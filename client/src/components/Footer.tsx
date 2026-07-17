@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="footer-bottom">
-        <p className="footer-text">&copy; {new Date().getFullYear()} Afroase. All rights reserved. Crafted with purpose.</p>
+        <p className="footer-text">&copy; {new Date().getFullYear()} Afroase. All rights reserved. Crafted with purpose. Designed by <a href="https://skytechghana.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>SkyTech Ghana</a>.</p>
       </div>
     </footer>
   )
