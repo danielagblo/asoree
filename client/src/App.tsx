@@ -13,6 +13,8 @@ import { CheckoutPortal } from './components/CheckoutPortal'
 import { SearchModal } from './components/SearchModal'
 import { ProductDetail } from './components/ProductDetail'
 import { Footer } from './components/Footer'
+import { AdminLogin } from './components/AdminLogin'
+import { AdminDashboard } from './components/AdminDashboard'
 import { ScrollReveal } from './components/ScrollReveal'
 import { ParallaxSection } from './components/ParallaxSection'
 import { api } from './api'
@@ -100,13 +102,15 @@ function AppContent() {
         <div className="noire-grid-column"></div>
       </div>
 
-      <Navbar
-        currentRoute={currentRoute}
-        setShowCheckout={setShowCheckout}
-        totalItemsCount={totalItemsCount}
-        setIsCartOpen={setIsCartOpen}
-        onSearchClick={() => setIsSearchOpen(true)}
-      />
+      {currentRoute !== '/admin' && (
+        <Navbar
+          currentRoute={currentRoute}
+          setShowCheckout={setShowCheckout}
+          totalItemsCount={totalItemsCount}
+          setIsCartOpen={setIsCartOpen}
+          onSearchClick={() => setIsSearchOpen(true)}
+        />
+      )}
 
       <main className="page-content">
         <Routes>
@@ -146,7 +150,7 @@ function AppContent() {
                   <section style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', minHeight: '400px', alignItems: 'center', padding: '40px 0', borderBottom: '1px solid var(--border-color)', gap: '40px' }}>
                     <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '30px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                        <div className="logo-icon" style={{ width: '40px', height: '40px', fontSize: '20px' }}>A</div>
+
                         <h1 style={{ fontSize: '70px', fontWeight: '800', letterSpacing: '-2px', lineHeight: '0.9' }}>our store</h1>
                       </div>
                       <p style={{ fontSize: '18px', color: 'var(--text-secondary)', lineHeight: '1.6', maxWidth: '500px' }}>
@@ -187,10 +191,11 @@ function AppContent() {
 
           <Route path="/about-us" element={<ScrollReveal><AboutUs /></ScrollReveal>} />
           <Route path="/contact-us" element={<ScrollReveal><ContactUs /></ScrollReveal>} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </main>
 
-      <Footer />
+      {currentRoute !== '/admin' && <Footer />}
 
       <CartDrawer
         isCartOpen={isCartOpen}
@@ -229,6 +234,11 @@ function AppContent() {
       />
     </>
   )
+}
+
+function AdminPage() {
+  const [loggedIn, setLoggedIn] = useState(!!api.getAdminToken())
+  return loggedIn ? <AdminDashboard /> : <AdminLogin onLogin={() => setLoggedIn(true)} />
 }
 
 export default function App() {

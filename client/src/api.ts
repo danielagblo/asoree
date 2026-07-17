@@ -119,4 +119,76 @@ export const api = {
     if (!res.ok) throw new Error('Failed to load config')
     return res.json()
   },
+
+  // Admin
+  getAdminToken(): string | null {
+    return localStorage.getItem('asoree_admin_token')
+  },
+
+  setAdminToken(token: string) {
+    localStorage.setItem('asoree_admin_token', token)
+  },
+
+  clearAdminToken() {
+    localStorage.removeItem('asoree_admin_token')
+  },
+
+  async login(email: string, password: string) {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
+    if (!res.ok) {
+      const err = await res.json()
+      throw new Error(err.error || 'Login failed')
+    }
+    return res.json()
+  },
+
+  async getContacts() {
+    const token = this.getAdminToken()
+    const res = await fetch(`${API_BASE}/contact`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    if (!res.ok) throw new Error('Failed to fetch contacts')
+    return res.json()
+  },
+
+  async createProduct(data: FormData) {
+    const token = this.getAdminToken()
+    const res = await fetch(`${API_BASE}/products`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: data,
+    })
+    if (!res.ok) {
+      const err = await res.json()
+      throw new Error(err.error || 'Failed to create product')
+    }
+    return res.json()
+  },
+
+  async updateProduct(id: number, data: FormData) {
+    const token = this.getAdminToken()
+    const res = await fetch(`${API_BASE}/products/${id}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}` },
+      body: data,
+    })
+    if (!res.ok) {
+      const err = await res.json()
+      throw new Error(err.error || 'Failed to update product')
+    }
+    return res.json()
+  },
+
+  async deleteProduct(id: number) {
+    const token = this.getAdminToken()
+    const res = await fetch(`${API_BASE}/products/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    if (!res.ok) throw new Error('Failed to delete product')
+  },
 }
