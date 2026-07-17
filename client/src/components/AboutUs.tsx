@@ -5,7 +5,7 @@ export const AboutUs: React.FC = () => {
   return (
     <div style={{ position: 'relative', zIndex: 10 }}>
       {/* Editorial Hero */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', minHeight: '450px', alignItems: 'center', padding: '40px 0', borderBottom: '1px solid var(--border-color)', gap: '40px' }}>
+      <section className="about-hero-grid">
         <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '30px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
 
@@ -47,7 +47,7 @@ export const AboutUs: React.FC = () => {
       </section>
 
       {/* Stats */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', padding: '60px 0', borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
+      <section className="about-stats-grid">
         <div>
           <div className="tags-row" style={{ marginBottom: '20px' }}>
             <span className="tag-pill solid">#StyleUnlocked</span>
@@ -77,7 +77,7 @@ export const AboutUs: React.FC = () => {
 
       {/* Founder story */}
       <section style={{ padding: '60px 0', textAlign: 'left' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '50px', alignItems: 'center' }}>
+        <div className="about-story-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <h3 style={{ fontSize: '32px', fontWeight: '800' }}>From Lagos Streets to Global Runways</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8' }}>

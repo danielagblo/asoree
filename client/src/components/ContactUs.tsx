@@ -52,7 +52,7 @@ export const ContactUs: React.FC = () => {
     <div style={{ position: 'relative', zIndex: 10, padding: '40px 0' }}>
 
       {/* 1. HERO SECTION (connect with us) */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', minHeight: '400px', alignItems: 'center', padding: '40px 0', borderBottom: '1px solid var(--border-color)', gap: '40px' }}>
+      <section className="about-hero-grid">
         <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '15px' }}>
             <span style={{ color: 'var(--accent-orange)', fontSize: '50px', fontWeight: '800', lineHeight: '0.8', fontFamily: 'sans-serif' }}>*</span>
@@ -88,17 +88,15 @@ export const ContactUs: React.FC = () => {
 
       {/* 2. BRAND CAROUSEL TICKER STRIP */}
       <section className="brand-carousel-container" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <div className="brand-carousel-track">
-          <div className="brand-logo">Ipsum</div>
-          <div className="brand-logo">Logo</div>
-          <div className="brand-logo">Logo</div>
-          <div className="brand-logo">Logo</div>
-          <div className="brand-logo">Logo</div>
+        <div className="brand-carousel-track marquee-track">
+          {['Heritage', 'Craft', 'Bold', 'Identity', 'Culture', 'Heritage', 'Craft', 'Bold', 'Identity', 'Culture'].map((w, i) => (
+            <div className="brand-logo" key={i}>{w}</div>
+          ))}
         </div>
       </section>
 
       {/* 3. TEAM & FORM SECTION (connect with our team) */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '80px', textAlign: 'left', padding: '60px 0', borderBottom: '1px solid var(--border-color)' }}>
+      <section className="contact-grid" style={{ padding: '60px 0', borderBottom: '1px solid var(--border-color)' }}>
 
         {/* Left Column (Info block) */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
@@ -269,7 +267,7 @@ export const ContactUs: React.FC = () => {
       <section style={{ padding: '60px 0', borderBottom: '1px solid var(--border-color)', textAlign: 'left' }}>
 
         {/* Header Grid: Title Left, 02 / Subtitle Right */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '60px', marginBottom: '40px', alignItems: 'flex-start' }}>
+        <div className="faq-header-grid">
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '15px' }}>
             <span style={{ color: 'var(--accent-orange)', fontSize: '50px', fontWeight: '800', lineHeight: '0.8', fontFamily: 'sans-serif' }}>*</span>
             <h2 style={{ fontSize: '72px', fontWeight: '800', letterSpacing: '-2px', lineHeight: '0.9', margin: '0' }}>

@@ -49,7 +49,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, loading, add
   return (
     <main style={{ position: 'relative', zIndex: 10, padding: '40px 0' }}>
       <ScrollReveal direction="up">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', borderBottom: '1px solid var(--border-color)', paddingBottom: '20px' }}>
+        <div className="catalog-filter-row">
           <div style={{ display: 'flex', gap: '15px' }}>
             {categories.map((cat) => (
               <button

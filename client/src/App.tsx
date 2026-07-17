@@ -47,6 +47,10 @@ function AppContent() {
   const currentRoute = location.pathname
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
+  useEffect(() => {
     api.getProducts()
       .then(setProducts)
       .catch(console.error)
