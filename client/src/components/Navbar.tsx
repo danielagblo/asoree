@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 interface NavbarProps {
@@ -17,6 +17,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchClick
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const handleLinkClick = () => {
     setShowCheckout(false)
@@ -39,14 +46,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      <header className="nav-container">
-        <Link 
-          to="/" 
-          className="logo-wrap" 
+      <header className={`nav-container${scrolled ? ' scrolled' : ''}`}>
+        <Link
+          to="/"
+          className="logo-wrap"
           onClick={handleLinkClick}
         >
-          <div className="logo-icon">A</div>
-          <span>afroase<span className="logo-at">@</span></span>
+
+          <span>asoree<span className="logo-at">@</span></span>
         </Link>
 
         <ul className="nav-links desktop-only">
@@ -64,8 +71,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </ul>
 
         <div className="nav-actions">
-          <button 
-            className="hamburger-btn mobile-only" 
+          <button
+            className="hamburger-btn mobile-only"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
             style={{
@@ -101,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </button>
-          
+
           <button className="circle-btn cart-icon-btn" onClick={() => setIsCartOpen(true)} style={{ position: 'relative' }}>
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -130,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </header>
 
       {isMobileMenuOpen && (
-        <nav className="mobile-menu mobile-only">
+        <nav className={`mobile-menu mobile-only${scrolled ? ' scrolled' : ''}`}>
           <ul>
             {routesMap.map((route) => (
               <li key={route.name} className={isRouteActive(route.path) ? 'active-item' : ''}>

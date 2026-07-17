@@ -6,7 +6,7 @@ export const Hero: React.FC = () => {
     <section className="hero-container">
       <div className="hero-left">
         <h1 className="hero-title-main">where</h1>
-        
+
         <div className="avatar-stack-wrap">
           <div className="avatar-stack">
             <ImageWithFallback className="avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Avatar 1" />
@@ -29,10 +29,10 @@ export const Hero: React.FC = () => {
 
       <div className="hero-center parallax-hero-img">
         <div className="hero-center-img-wrap">
-          <ImageWithFallback 
-            className="hero-center-img" 
-            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" 
-            alt="Afroase Main Model" 
+          <ImageWithFallback
+            className="hero-center-img"
+            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"
+            alt="Asoree Main Model"
           />
         </div>
       </div>

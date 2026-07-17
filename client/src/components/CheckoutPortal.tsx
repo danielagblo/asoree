@@ -99,8 +99,8 @@ export const CheckoutPortal: React.FC<CheckoutPortalProps> = ({
     <div className="checkout-overlay">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1000px', margin: '0 auto 40px', borderBottom: '1px solid var(--border-color)', paddingBottom: '20px' }}>
         <div className="logo-wrap">
-          <div className="logo-icon">A</div>
-          <span>afroase<span className="logo-at">@</span></span>
+
+          <span>asoree<span className="logo-at">@</span></span>
         </div>
         <button className="arrow-btn" onClick={() => setShowCheckout(false)}>
           Back to Store
@@ -119,7 +119,7 @@ export const CheckoutPortal: React.FC<CheckoutPortalProps> = ({
                 <label className="form-label">Contact Email</label>
                 <input className="form-input" type="email" required placeholder="alex@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
-              
+
               <div className="form-group">
                 <label className="form-label">Recipient Name</label>
                 <input className="form-input" type="text" required placeholder="Alex Ezirim" value={name} onChange={(e) => setName(e.target.value)} />
