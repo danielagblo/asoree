@@ -6,13 +6,15 @@ interface NavbarProps {
   setShowCheckout: (show: boolean) => void
   totalItemsCount: number
   setIsCartOpen: (open: boolean) => void
+  onSearchClick: () => void
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentRoute,
   setShowCheckout,
   totalItemsCount,
-  setIsCartOpen
+  setIsCartOpen,
+  onSearchClick
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -98,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
         </button>
 
-        <button className="circle-btn search-icon-btn">
+        <button className="circle-btn search-icon-btn" onClick={onSearchClick}>
           <svg width="20" height="20" fill="none" stroke="#fff" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
