@@ -76,15 +76,16 @@ export const CheckoutPortal: React.FC<CheckoutPortalProps> = ({
         onClose: () => {
           setPaymentStep('form')
         },
-        callback: async (response: any) => {
-          try {
-            await api.verifyOrder(response.reference)
-            clearCart()
-            setPaymentStep('success')
-          } catch (err: any) {
-            setError(err.message || 'Payment verification failed')
-            setPaymentStep('form')
-          }
+        callback: (response: any) => {
+          api.verifyOrder(response.reference)
+            .then(() => {
+              clearCart()
+              setPaymentStep('success')
+            })
+            .catch((err: any) => {
+              setError(err.message || 'Payment verification failed')
+              setPaymentStep('form')
+            })
         },
       })
 
