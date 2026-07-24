@@ -35,6 +35,7 @@ export class PaystackService {
         email,
         amount: Math.round(amount * 100),
         reference,
+        currency: env.paystackCurrency,
       }),
     })
 

@@ -7,6 +7,7 @@ export const env = {
   jwtSecret: process.env.JWT_SECRET || 'fallback-secret',
   paystackSecretKey: process.env.PAYSTACK_SECRET_KEY || '',
   paystackPublicKey: process.env.PAYSTACK_PUBLIC_KEY || '',
+  paystackCurrency: process.env.PAYSTACK_CURRENCY || 'USD',
   imageStorage: (process.env.IMAGE_STORAGE || 'database') as 'database' | 's3',
   s3: {
     endpoint: process.env.S3_ENDPOINT || '',
