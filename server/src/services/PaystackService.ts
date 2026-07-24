@@ -1,4 +1,5 @@
 import { env } from '../config/env'
+import { getUsdToGhsRate } from './RateService'
 
 const PAYSTACK_API = 'https://api.paystack.co'
 
@@ -25,6 +26,14 @@ interface PaystackVerifyResponse {
 
 export class PaystackService {
   async initializeTransaction(email: string, amount: number, reference: string) {
+    let finalAmount = Math.round(amount * 100)
+    let currency = env.paystackCurrency
+
+    if (currency === 'GHS') {
+      const rate = await getUsdToGhsRate()
+      finalAmount = Math.round(finalAmount * rate)
+    }
+
     const res = await fetch(`${PAYSTACK_API}/transaction/initialize`, {
       method: 'POST',
       headers: {
@@ -33,9 +42,9 @@ export class PaystackService {
       },
       body: JSON.stringify({
         email,
-        amount: Math.round(amount * 100),
+        amount: finalAmount,
         reference,
-        currency: env.paystackCurrency,
+        currency,
       }),
     })
 
